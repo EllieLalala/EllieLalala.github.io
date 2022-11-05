@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="select * from all_tab_comments – 查询所有用户的表,视图等。 select * from user_tab_comments – 查询本用户的表,视图等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="test">
+<meta property="og:url" content="http://example.com/2022/11/04/test/index.html">
+<meta property="og:site_name" content="王子心的个人博客">
+<meta property="og:description" content="select * from all_tab_comments – 查询所有用户的表,视图等。 select * from user_tab_comments – 查询本用户的表,视图等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-04T13:01:18.000Z">
+<meta property="article:modified_time" content="2022-11-04T13:39:00.319Z">
+<meta property="article:author" content="王子心">
+<meta property="article:tag" content="实操">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/11/04/test/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>test | 王子心的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">王子心的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/04/test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zjz.jpg">
+      <meta itemprop="name" content="王子心">
+      <meta itemprop="description" content="Practice makes perfect.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王子心的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          test
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-04 21:01:18 / 修改时间：21:39:00" itemprop="dateCreated datePublished" datetime="2022-11-04T21:01:18+08:00">2022-11-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oracle/" itemprop="url" rel="index"><span itemprop="name">oracle</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>select * from all_tab_comments – 查询所有用户的表,视图等。</p>
+<p>select * from user_tab_comments – 查询本用户的表,视图等。</p>
+<span id="more"></span>
+<p>select * from all_col_comments  –查询所有用户的表的列名和注释。zhi</p>
+<p>select * from user_col_comments – 查询本用户的表的列名和注释。</p>
+<p>select * from all_tab_columns –查询所有用户的表的列名等信息。</p>
+<p>select * from user_tab_columns –查询本用户的表的列名等信息。</p>
+<p>查询某个用户具有的角色：<br>select grantee,granted_role from dba_role_privs where grantee&#x3D;’WJW’;<br>查询某个用户具有的系统权限：<br>select grantee,privilege from dba_sys_privs where grantee&#x3D;’WJW’;<br>查询某个角色中具有什么系统权限：<br>select privilege from role_sys_privs where role&#x3D;’RESOURCE’;<br>查询某个角色中包含有什么角色<br>select granted_role from role_role_privs where role&#x3D;’SYSDBA’;</p>
+<p>如果想让某个用户拥有查看数据库数据字典的权限，但没有系统权限和针对用户数据的权限，则可以(通常对新数据库管理员有用)<br>grant create session,select_catalog_role to wjw;</p>
+<p>管理用户、角色和权限的DBA视图：<br>DBA_USERS         提供用户的信息<br>DBA_ROLES         显示数据库中所有角色<br>DBA_COL_PRIVS     显示列级对象授权<br>DBA_ROLE_PRIVS    显示用户及其角色<br>DBA_SYS_PRIVS     显示被授予系统权限的用户<br>DBA_TAB_PRIVS     显示用户及他们在表上的权限<br>ROLE_ROLE_PRIVS   显示授予角色的角色<br>ROLE_SYS_PRIVS    显示授予角色的系统权限<br>ROLE_TAB_PRIVS    显示授予角色的表权限<br>SESSION_PRIVS     显示允许用户使用的权限<br>SESSION_ROLES     显示当前允许用户使用的角色</p>
+<p>–1、查看表空间的名称及大小<br>SELECT t.tablespace_name, round(SUM(bytes &#x2F; (1024 * 1024)), 0) ts_size<br>FROM dba_tablespaces t, dba_data_files d<br>WHERE t.tablespace_name &#x3D; d.tablespace_name<br>GROUP BY t.tablespace_name;<br>–2、查看表空间物理文件的名称及大小<br>SELECT tablespace_name,<br>file_id,<br>file_name,<br>round(bytes &#x2F; (1024 * 1024), 0) total_space<br>FROM dba_data_files<br>ORDER BY tablespace_name<br>–查看临时表空间<br>SELECT TABLESPACE_NAME, FREE_SPACE&#x2F;1024&#x2F;1024 AS “FREE SPACE(M)”<br>  FROM DBA_TEMP_FREE_SPACE</p>
+<p> &#x2F;<em>创建表空间</em>&#x2F;<br>  create tablespace QCJ_TABLESPACE<br>  &#x2F;<em>表空间物理文件名称</em>&#x2F;<br>  datafile ‘QCJ_TABLESPACE.dbf’<br>  – 这种方式指定表空间物理文件位置<br>  – datafile ‘F:\APP\QIUCHANGJIN\ORADATA\ORCL\QCJ_TABLESPACE.dbf’<br>  – 大小 500M，每次 5M 自动增大，最大不限制<br>  size 500M autoextend on next 5M maxsize unlimited; </p>
+<p>   &#x2F;* 创建用户*&#x2F;<br>  create user qiuchangjin<br>  IDENTIFIED BY root –用户密码<br>  default tablespace QCJ_TABLESPACE– 表空间是上面创建的<br>  temporary tablespace TEMP – 临时表空间默认 TEMP</p>
+<p>create table t1 as select * from scott.emp where 1&#x3D;0;</p>
+<p>imp system&#x2F;manager<br>ignore&#x3D;y tables&#x3D;SP_WH_GWG1_17S_1S <br>fromuser&#x3D;CPXOA_GDWHT touser&#x3D;CPXOA_GDWHT <br>file&#x3D;g:\1.dmp </p>
+<p>Oracle数据库中根据约束名查找约束所属表，以及字段<br>SELECT A.CONSTRAINT_NAME,A.TABLE_NAME,A.COLUMN_NAME,B.CONSTRAINT_TYPE FROM USER_CONS_COLUMNS A, USER_CONSTRAINTS B WHERE A.CONSTRAINT_NAME &#x3D;B.CONSTRAINT_NAME AND  a.constraint_name LIKE ‘%SYS_C0039727%’;</p>
+<p> 这个字段是哪张表里的么  jjfxdj<br>select * from dba_tab_cols a where upper(a.column_name) &#x3D; ‘JJFXDJ’</p>
+<p>select owner from dba_tables where table_name&#x3D;’表名’;</p>
+<p>select * from dba_tables where table_name like ‘%%’;<br>–简单Case函数<br>CASE sex<br>         WHEN ‘1’ THEN ‘男’<br>         WHEN ‘2’ THEN ‘女’<br>ELSE ‘其他’ END<br>–Case搜索函数<br>CASE WHEN sex &#x3D; ‘1’ THEN ‘男’<br>         WHEN sex &#x3D; ‘2’ THEN ‘女’<br>ELSE ‘其他’ END </p>
+<p>select * from v$version 查看plsql&#x2F;developer所连Oracle版本</p>
+<p>tnsname 连接不上，可能是配置文件中有空格，需要把空格全部删掉</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%9E%E6%93%8D/" rel="tag"># 实操</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/28/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/04/linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/" rel="next" title="linux命令学习">
+      linux命令学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="王子心"
+      src="/images/zjz.jpg">
+  <p class="site-author-name" itemprop="name">王子心</p>
+  <div class="site-description" itemprop="description">Practice makes perfect.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-10 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王子心</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共5.2k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

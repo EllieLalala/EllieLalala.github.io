@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、数据库程序安装与创建1.数据库安装– 麒麟操作系统切换至root">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hello">
+<meta property="og:url" content="http://example.com/2022/11/05/hello-1/index.html">
+<meta property="og:site_name" content="王子心的个人博客">
+<meta property="og:description" content="一、数据库程序安装与创建1.数据库安装– 麒麟操作系统切换至root">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-05T13:41:00.000Z">
+<meta property="article:modified_time" content="2022-11-05T13:44:43.476Z">
+<meta property="article:author" content="王子心">
+<meta property="article:tag" content="oracle">
+<meta property="article:tag" content="dm数据库">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/11/05/hello-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>hello | 王子心的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">王子心的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/05/hello-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zjz.jpg">
+      <meta itemprop="name" content="王子心">
+      <meta itemprop="description" content="Practice makes perfect.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王子心的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hello
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-05 21:41:00 / 修改时间：21:44:43" itemprop="dateCreated datePublished" datetime="2022-11-05T21:41:00+08:00">2022-11-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一、数据库程序安装与创建<br>1.数据库安装<br>– 麒麟操作系统切换至root</p>
+<span id="more"></span>
+<p>wzx@wzx-VMware-Virtual-Platform:~$ su<br>密码：<br>账户已锁定，请3分钟后再试</p>
+<p>su: 鉴定故障<br>wzx@wzx-VMware-Virtual-Platform:<del>$<br>wzx@wzx-VMware-Virtual-Platform:</del>$ sudo passwd root<br>[sudo] wzx 的密码：<br>新的 密码：<br>重新输入新的 密码：<br>passwd：已成功更新密码<br>wzx@wzx-VMware-Virtual-Platform:~$ su<br>密码：<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx#<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx#<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx#<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx# </p>
+<p>–检查操作系统情况<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# df -h &#x2F;tmp&#x2F;<br>文件系统        容量  已用  可用 已用% 挂载点<br>&#x2F;dev&#x2F;sda5        47G   12G   33G   26% &#x2F;<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm#<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# cat &#x2F;proc&#x2F;meminfo<br>MemTotal:        3996432 kB<br>MemFree:          121312 kB<br>MemAvailable:    2703924 kB<br>Buffers:           60408 kB<br>Cached:          2679308 kB<br>SwapCached:            0 kB<br>Active:           661008 kB<br>Inactive:        2845272 kB<br>Active(anon):       2316 kB<br>Inactive(anon):   770376 kB<br>Active(file):     658692 kB<br>Inactive(file):  2074896 kB<br>Unevictable:          36 kB<br>Mlocked:              32 kB<br>SwapTotal:       4793340 kB<br>SwapFree:        4791536 kB<br>Dirty:              2228 kB<br>Writeback:             0 kB<br>AnonPages:        766672 kB<br>Mapped:           439056 kB<br>Shmem:             12076 kB<br>KReclaimable:     107704 kB<br>Slab:             189168 kB<br>SReclaimable:     107704 kB<br>SUnreclaim:        81464 kB<br>KernelStack:       11984 kB<br>PageTables:        20540 kB<br>NFS_Unstable:          0 kB<br>Bounce:                0 kB<br>WritebackTmp:          0 kB<br>CommitLimit:     6791556 kB<br>Committed_AS:    4308632 kB<br>VmallocTotal:   34359738367 kB<br>VmallocUsed:       27420 kB<br>VmallocChunk:          0 kB<br>Percpu:            78848 kB<br>HardwareCorrupted:     0 kB<br>AnonHugePages:         0 kB<br>ShmemHugePages:        0 kB<br>ShmemPmdMapped:        0 kB<br>FileHugePages:         0 kB<br>FilePmdMapped:         0 kB<br>CmaTotal:              0 kB<br>CmaFree:               0 kB<br>HugePages_Total:       0<br>HugePages_Free:        0<br>HugePages_Rsvd:        0<br>HugePages_Surp:        0<br>Hugepagesize:       2048 kB<br>Hugetlb:               0 kB<br>DirectMap4k:      190272 kB<br>DirectMap2M:     4003840 kB<br>DirectMap1G:     2097152 kB<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# </p>
+<p>–创建用户<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# groupadd dinstall<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm#<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# useradd -g dinstall -m -d &#x2F;home&#x2F;dmdba&#x2F; -s &#x2F;bin&#x2F;bash dmdba<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# passwd dmdba<br>新的 密码：123,123，<br>重新输入新的 密码：123,123，<br>passwd：已成功更新密码<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# </p>
+<p>–创建安装目录<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# mkdir &#x2F;dm8<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# chown dmdba:dinstall &#x2F;dm8<br>mkdir &#x2F;mnt&#x2F;dm<br>–挂载安装包iso镜像<br>mount &#x2F;opt&#x2F;dm8……iso &#x2F;mnt&#x2F;dm  –不与安装目录同一个<br>–图形界面设置<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# xhost +<br>access control disabled, clients can connect from any host<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# echo $DISPLAY<br>:0</p>
+<p>–开始图形化安装oot@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# su - dmdba<br>dmdba@wzx-VMware-Virtual-Platform:<del>$<br>dmdba@wzx-VMware-Virtual-Platform:</del>$<br>dmdba@wzx-VMware-Virtual-Platform:<del>$<br>dmdba@wzx-VMware-Virtual-Platform:</del>$ echo $DISPLAY</p>
+<p>dmdba@wzx-VMware-Virtual-Platform:<del>$<br>dmdba@wzx-VMware-Virtual-Platform:</del>$ export DISPLAY&#x3D;:0<br>dmdba@wzx-VMware-Virtual-Platform:<del>$<br>dmdba@wzx-VMware-Virtual-Platform:</del>$ </p>
+<p>oot@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx&#x2F;dm# su - dmdba<br>dmdba@wzx-VMware-Virtual-Platform:<del>$ export DISPLAY&#x3D;:0<br>dmdba@wzx-VMware-Virtual-Platform:</del>$ echo $DISPLAY<br>:0</p>
+<p>mdba@wzx-VMware-Virtual-Platform:~$ cd &#x2F;mnt&#x2F;dm&#x2F;<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;mnt&#x2F;dm$ ll<br>总用量 739446<br>dr-xr-xr-x 1 root root      2048 8月  23  2021  .&#x2F;<br>drwxr-xr-x 3 root root      4096 5月   4 10:59  ..&#x2F;<br>-r-xr-xr-x 1 root root   2784248 8月  23  2021 ‘DM8 Install.pdf’*<br>-r-xr-xr-x 1 root root 754402133 8月  23  2021  DMInstall.bin*<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;mnt&#x2F;dm$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;mnt&#x2F;dm$ ll<br>总用量 739446<br>dr-xr-xr-x 1 root root      2048 8月  23  2021  .&#x2F;<br>drwxr-xr-x 3 root root      4096 5月   4 10:59  ..&#x2F;<br>-r-xr-xr-x 1 root root   2784248 8月  23  2021 ‘DM8 Install.pdf’*<br>-r-xr-xr-x 1 root root 754402133 8月  23  2021  DMInstall.bin*<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;mnt&#x2F;dm$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;mnt&#x2F;dm$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;mnt&#x2F;dm$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;mnt&#x2F;dm$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;mnt&#x2F;dm$ .&#x2F;DMInstall.bin </p>
+<p>–修改文件最大连接数<br>vi &#x2F;etc&#x2F;security&#x2F;limits.conf</p>
+<p>–最好选择命令行安装<br>.&#x2F;DMInstall.bin -i<br>KEY选择N<br>其他默认即可</p>
+<p>二、数据库创建以及数据库实例管理<br>1.创建与删除<br>簇的大小不能修改<br>默认SYSDBA 用户 密码：SYSDBA<br>SYSAUDITOR 密码：SYSAUDITOR<br>目前密码111111111<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx# mv &#x2F;dm8&#x2F;bin&#x2F;DmServiceDMSERVER.service &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;DmServiceDMSERVER.service<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx#<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx#<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx#<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx# systemctl enable DmServiceDMSERVER.service<br>Created symlink &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants&#x2F;DmServiceDMSERVER.service → &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;DmServiceDMSERVER.service.</p>
+<p>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx#<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx#<br>root@wzx-VMware-Virtual-Platform:&#x2F;home&#x2F;wzx# systemctl start DmServiceDMSERVER.service</p>
+<p>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin# cd &#x2F;dm8&#x2F;bin<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin# .&#x2F;dminit help<br>initdb V8<br>db version: 0x7000c<br>file dm.key not found, use default license!<br>License will expire on 2022-08-20<br>格式: .&#x2F;dminit     KEYWORD&#x3D;value</p>
+<p>例程: .&#x2F;dminit     PATH&#x3D;&#x2F;public&#x2F;dmdb&#x2F;dmData PAGE_SIZE&#x3D;16</p>
+<h2 id="关键字-说明（默认值）"><a href="#关键字-说明（默认值）" class="headerlink" title="关键字                     说明（默认值）"></a>关键字                     说明（默认值）</h2><p>INI_FILE                   初始化文件dm.ini存放的路径<br>PATH                       初始数据库存放的路径<br>CTL_PATH                   控制文件路径<br>LOG_PATH                   日志文件路径<br>EXTENT_SIZE                数据文件使用的簇大小(16)，可选值：16, 32, 64，单位：页<br>PAGE_SIZE                  数据页大小(8)，可选值：4, 8, 16, 32，单位：K<br>LOG_SIZE                   日志文件大小(256)，单位为：M，范围为：64M ~ 2G<br>CASE_SENSITIVE             大小敏感(Y)，可选值：Y&#x2F;N，1&#x2F;0<br>CHARSET&#x2F;UNICODE_FLAG       字符集(0)，可选值：0[GB18030]，1[UTF-8]，2[EUC-KR]<br>SEC_PRIV_MODE              权限管理模式(0)，可选值：0[TRADITION]，1[BMJ]，2[EVAL]<br>LENGTH_IN_CHAR             VARCHAR类型长度是否以字符为单位(N)，可选值：Y&#x2F;N，1&#x2F;0<br>SYSDBA_PWD                 设置SYSDBA密码(SYSDBA)<br>SYSAUDITOR_PWD             设置SYSAUDITOR密码(SYSAUDITOR)<br>DB_NAME                    数据库名(DAMENG)<br>INSTANCE_NAME              实例名(DMSERVER)<br>PORT_NUM                   监听端口号(5236)<br>BUFFER                     系统缓存大小(100)，单位M<br>TIME_ZONE                  设置时区(+08:00)<br>PAGE_CHECK                 页检查模式(0)，可选值：0&#x2F;1&#x2F;2<br>EXTERNAL_CIPHER_NAME       设置默认加密算法<br>EXTERNAL_HASH_NAME         设置默认HASH算法<br>EXTERNAL_CRYPTO_NAME       设置根密钥加密引擎<br>RLOG_ENC_FLAG              设置日志文件是否加密(N)，可选值：Y&#x2F;N，1&#x2F;0<br>USBKEY_PIN                 设置USBKEY PIN<br>PAGE_ENC_SLICE_SIZE        设置页加密分片大小，可选值：0、512、4096，单位：Byte<br>ENCRYPT_NAME               设置全库加密算法<br>BLANK_PAD_MODE             设置空格填充模式(0)，可选值：0&#x2F;1<br>SYSTEM_MIRROR_PATH         SYSTEM数据文件镜像路径<br>MAIN_MIRROR_PATH           MAIN数据文件镜像<br>ROLL_MIRROR_PATH           回滚文件镜像路径<br>MAL_FLAG                   初始化时设置dm.ini中的MAL_INI(0)<br>ARCH_FLAG                  初始化时设置dm.ini中的ARCH_INI(0)<br>MPP_FLAG                   Mpp系统内的库初始化时设置dm.ini中的mpp_ini(0)<br>CONTROL                    初始化配置文件（配置文件格式见系统管理员手册）<br>AUTO_OVERWRITE             是否覆盖所有同名文件(0) 0:不覆盖 1:部分覆盖 2:完全覆盖<br>USE_NEW_HASH               是否使用改进的字符类型HASH算法(1)<br>ELOG_PATH                  指定初始化过程中生成的日志文件所在路径<br>AP_PORT_NUM                ECS模式下AP协同工作的监听端口<br>DFS_FLAG                   初始化时设置dm.ini中的DFS_INI(0)<br>DFS_PATH                   启用dfs时指定数据文件的缺省路径<br>DFS_HOST                   指定连接分布式系统DFS的服务地址(localhost)<br>DFS_PORT                   指定连接分布式系统DFS的服务端口号(3332)<br>DFS_COPY_NUM               指定分布式系统的副本数(3)<br>DFS_DB_NAME                指定分布式系统的中数据库名(默认与DB_NAME一致)<br>SHARE_FLAG                 指定分布式系统中该数据库的共享属性(0)<br>REGION_MODE                指定分布式系统中该数据库的系统表空间数据文件的区块策略(0) 0:微区策略 1:宏区策略<br>HUGE_WITH_DELTA            是否仅支持创建事务型HUGE表(1) 1:是 0:否<br>RLOG_GEN_FOR_HUGE          是否生成HUGE表REDO日志(0) 1:是 0:否<br>PSEG_MGR_FLAG              是否仅使用管理段记录事务信息(0) 1:是 0:否<br>CHAR_FIX_STORAGE           CHAR是否按定长存储(N)，可选值：Y&#x2F;N，1&#x2F;0<br>HELP                       打印帮助信息<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin# su - dmdba<br>-bash: kysec：权限不够：&#x2F;home&#x2F;dmdba&#x2F;&#x2F;.bash_profile<br>dmdba@wzx-VMware-Virtual-Platform:<del>$<br>dmdba@wzx-VMware-Virtual-Platform:</del>$<br>dmdba@wzx-VMware-Virtual-Platform:<del>$<br>dmdba@wzx-VMware-Virtual-Platform:</del>$ cd &#x2F;dm8&#x2F;bin</p>
+<p>.&#x2F;dminit path&#x3D;&#x2F;dm8.data db_name&#x3D;DMTEST instance_name&#x3D;DMTESTSVR port_num&#x3D;5238 page_size&#x3D;16<br>–dminit 没有注册数据库服务，启动方式受局限<br>–注册数据库，需要使用root用户</p>
+<p>–删除数据库服务<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin# cd &#x2F;dm8&#x2F;script&#x2F;<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script# ll<br>总用量 16<br>drwxr-xr-x  3 dmdba dinstall 4096 5月   4 12:57 .&#x2F;<br>drwxr-xr-x 18 dmdba dinstall 4096 5月   4 22:15 ..&#x2F;<br>-rwxr-xr-x  1 dmdba dinstall 1391 5月   4 12:58 ckdmstat.sh*<br>drwxr-xr-x  2 dmdba dinstall 4096 5月   4 12:58 root&#x2F;<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script#<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script#<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script#<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script#<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script#<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script# cd root&#x2F;<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root# ll<br>总用量 52<br>drwxr-xr-x 2 dmdba dinstall  4096 5月   4 12:58 .&#x2F;<br>drwxr-xr-x 3 dmdba dinstall  4096 5月   4 12:57 ..&#x2F;<br>-rwxr-xr-x 1 dmdba dinstall 27256 5月   4 12:58 dm_service_installer.sh*<br>-rwxr-xr-x 1 dmdba dinstall  9501 5月   4 12:58 dm_service_uninstaller.sh*<br>-rwxr-xr-x 1 dmdba dinstall   579 5月   4 12:58 root_installer.sh*<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root#<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root#<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root# </p>
+<p>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root# .&#x2F;dm_service_installer.sh -h<br>Usage: dm_service_installer.sh -t service_type [-p service_name_postfix] [-dm_ini dm_ini_file]<br>        [-watcher_ini watcher_ini_file ] [-monitor_ini monitor_ini_file] [-cssm_ini cssm_ini_file]<br>        [-dfs_ini dfs_ini_file] [-dcr_ini dcr_ini_file]<br>        [-dss_ini dss_ini_file] [-drs_ini drs_ini_file] [-dras_ini dras_ini_file] [-dcs_ini dcs_ini_file] [-server server_info]<br>        [-dmap_ini dmap_ini_file] [-m open|mount] [-y dependent_service] [-auto true|false]<br>  or dm_service_installer.sh [-s service_file_path]<br>  or dm_service_installer.sh -h</p>
+<p>   -t               服务类型,包括dmimon,dmap,dmserver,dmwatcher,dmmonitor,dmcss,dmcssm,dmasmsvr,dmdcs,dmdrs,dmdras,dmdss<br>   -p               服务名后缀,对于dmimon,dmap服务类型无效<br>   -dm_ini          dm.ini文件路径<br>   -watcher_ini     dmwatcher.ini文件路径.<br>   -monitor_ini     dmmonitor.ini文件路径.<br>   -dcr_ini         dmdcr.ini文件路径.<br>   -cssm_ini        dmcssm.ini文件路径.<br>   -dss_ini         dss.ini文件路径.<br>   -drs_ini         drs.ini文件路径.<br>   -dras_ini        dras.ini文件路径.<br>   -dcs_ini         dcs.ini文件路径.<br>   -dfs_ini         dfs.ini文件路径.<br>   -dmap_ini        dmap.ini文件路径.<br>   -server          服务器信息(IP:PORT)<br>   -auto            设置服务是否自动启动,值为true或false，默认true.<br>   -m               设置服务器启动模式open或mount,只针对dmserver服务类型生效,可选<br>   -y               设置依赖服务，此选项只针对systemd服务环境下的dmserver和dmasmsvr服务生效<br>   -s               服务脚本路径，设置则忽略除-y外的其他参数选项<br>   -h               帮助<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root#<br>–数据库注册<br>oot@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root# .&#x2F;dm_service_installer.sh -t dmserver -p DAMENG -dm_ini &#x2F;dm8&#x2F;data2&#x2F;DAMENG&#x2F;dm.ini<br>Created symlink &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants&#x2F;DmServiceDAMENG.service → &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;DmServiceDAMENG.service.<br>创建服务(DmServiceDAMENG)完成<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root#<br>–注册数据库，需要使用root用户<br>–命令行注册时，需要启动</p>
+<p>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root# systemctl start DmServiceDAMENG<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root# </p>
+<p>2.数据库连接<br>–命令<br>mdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ .&#x2F;disql sysdba&#x2F;111111111:5236</p>
+<p>服务器[LOCALHOST:5236]:处于普通打开状态<br>登录使用时间 : 94.407(ms)<br>disql V8<br>SQL&gt; select name from v$database;</p>
+<p>行号     NAME  </p>
+<hr>
+<p>1          DAMENG</p>
+<p>已用时间: 339.107(毫秒). 执行号:51600.<br>SQL&gt; conn sysdba&#x2F;SYSDBA:5238</p>
+<p>服务器[LOCALHOST:5238]:处于普通打开状态<br>登录使用时间 : 230.430(ms)<br>SQL&gt; SELECT NAME FROM V$DATABASE;</p>
+<p>行号     NAME  </p>
+<hr>
+<p>1          DAMENG</p>
+<p>已用时间: 195.769(毫秒). 执行号:300.<br>SQL&gt; </p>
+<p>–dm管理工具<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;script&#x2F;root# su - dmdba<br>-bash: kysec：权限不够：&#x2F;home&#x2F;dmdba&#x2F;&#x2F;.bash_profile<br>dmdba@wzx-VMware-Virtual-Platform:<del>$ export DISPLAY&#x3D;:0<br>dmdba@wzx-VMware-Virtual-Platform:</del>$ cd &#x2F;dm8&#x2F;bin<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ .&#x2F;manager<br>-bash: .&#x2F;manager: 没有那个文件或目录<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ cd ..&#x2F;tool&#x2F;<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;tool$ .&#x2F;manager</p>
+<p>–网络配置<br>cd &#x2F;dm8&#x2F;tool<br>export DISPLAY&#x3D;:0<br>.&#x2F;nca.sh –网络配置<br>cd &#x2F;dm8&#x2F;bin<br>.&#x2F;disql sysdba&#x2F;SYSDBA@DMTEST<br>或者<br>vim &#x2F;etc&#x2F;dm_svc.conf</p>
+<p>3.数据库状态切换<br>SQL&gt;<br>SQL&gt; alter database mount;<br>操作已执行<br>已用时间: 474.381(毫秒). 执行号:0.<br>SQL&gt;<br>SQL&gt;<br>SQL&gt; slect status$ from v$instance;<br>slect status$ from v$instance;</p>
+<p>slect status$ from v$instance;<br>                 *<br>第 1 行, 第 18 列[status$]附近出现错误[-2007]:<br>语法分析出错.<br>已用时间: 8.682(毫秒). 执行号:0.<br>SQL&gt; slect status from v$instance;<br>slect status from v$instance;</p>
+<p>slect status from v$instance;<br>                *<br>第 1 行, 第 17 列[status]附近出现错误[-2007]:<br>语法分析出错.<br>已用时间: 11.411(毫秒). 执行号:0.<br>SQL&gt; select status$ from v$instance;</p>
+<p>行号     STATUS$</p>
+<hr>
+<p>1          MOUNT</p>
+<p>已用时间: 51.962(毫秒). 执行号:301.<br>SQL&gt;<br>SQL&gt;<br>SQL&gt; alter dababase open;<br>alter dababase open;</p>
+<p>alter dababase open;<br>                  *<br>第 1 行, 第 19 列[dababase]附近出现错误[-2007]:<br>语法分析出错.<br>已用时间: 0.245(毫秒). 执行号:0.<br>SQL&gt; alter database open;<br>操作已执行<br>已用时间: 00:00:06.018. 执行号:0.<br>SQL&gt; select status$ from v$instance;</p>
+<p>行号     STATUS$</p>
+<hr>
+<p>1          OPEN</p>
+<p>已用时间: 1.127(毫秒). 执行号:302.<br>SQL&gt; alter database suspend;<br>操作已执行<br>已用时间: 101.251(毫秒). 执行号:0.<br>SQL&gt; select status$ from v$instance;</p>
+<p>行号     STATUS$</p>
+<hr>
+<p>1          SUSPEND</p>
+<p>已用时间: 7.966(毫秒). 执行号:303.<br>SQL&gt; </p>
+<p>–bin目录下disql与tool目录下disql区别<br>tool目录下disql调tool目录下disql<br>但tool目录下disql不登录，需要自己去连接<br>conn sysdba&#x2F;SYSDBA:5238</p>
+<p>4.启动与关闭DM数据库<br>export DISPLAY&#x3D;:0<br>cd &#x2F;dm8&#x2F;tool<br>–root用户<br>–DM服务查看器<br>.&#x2F;dmservice.sh</p>
+<p>–命令行<br>–systemctl start DmServiceDMSERVER<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;tool# systemctl start DmServiceDMSERVER<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;tool# systemctl status DmServiceDMSERVER<br>● DmServiceDMSERVER.service - DM database instance service<br>     Loaded: loaded (&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;DmServiceDMSERVER.service; enabl&gt;<br>     Active: active (running) since Thu 2022-05-05 16:11:30 CST; 9min ago<br>    Process: 1001 ExecStart&#x3D;&#x2F;dm8&#x2F;bin&#x2F;DmServiceDMSERVER start (code&#x3D;exited&gt;<br>   Main PID: 1115 (dmserver)<br>      Tasks: 51<br>     Memory: 425.5M<br>     CGroup: &#x2F;system.slice&#x2F;DmServiceDMSERVER.service<br>             └─1115 &#x2F;dm8&#x2F;bin&#x2F;dmserver &#x2F;dm8&#x2F;data&#x2F;DAMENG&#x2F;dm.ini -noconsole</p>
+<p>5月 05 16:11:13 wzx-VMware-Virtual-Platform systemd[1]: Starting DM datab&gt;<br>5月 05 16:11:30 wzx-VMware-Virtual-Platform DmServiceDMSERVER[1001]: [39B&gt;<br>5月 05 16:11:30 wzx-VMware-Virtual-Platform systemd[1]: Started DM databa&gt;</p>
+<p>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;tool# </p>
+<p>–dmdba用户<br>–前台<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ .&#x2F;dmserver &#x2F;dm8&#x2F;data&#x2F;DAMENG&#x2F;dm.ini<br>file dm.key not found, use default license!<br>version info: develop<br>instance DMSERVER is running.<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ .&#x2F;DmServiceDMSERVER stop<br>Stopping DmServiceDMSERVER:                                [ OK ]<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ .&#x2F;dmserver &#x2F;dm8&#x2F;data&#x2F;DAMENG&#x2F;dm.<br>dm.ctl  dm.ini<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ .&#x2F;dmserver &#x2F;dm8&#x2F;data&#x2F;DAMENG&#x2F;dm.ini<br>file dm.key not found, use default license!<br>version info: develop<br>DM Database Server x64 V8 4-2-18-21.08.20-146029-10013-ENT  startup…<br>Normal of FAST<br>Normal of DEFAULT<br>Normal of RECYCLE<br>Normal of KEEP<br>Normal of ROLL<br>Database mode &#x3D; 0, oguid &#x3D; 0<br>License will expire on 2022-08-20<br>file lsn: 36851<br>ndct db load finished<br>ndct fill fast pool finished<br>iid page’s trxid[9017]<br>NEXT TRX ID &#x3D; 9018<br>pseg_collect_mgr_items, total collect 0 active_trxs, 0 cmt_trxs, 0 pre_cmt_trxs, 0 active_pages, 0 cmt_pages, 0 pre_cmt_pages, 0 mgr pages, 0 mgr recs!<br>total 0 active crash trx, pseg_crash_trx_rollback sys_only(0) begin …<br>pseg_crash_trx_rollback end, total 0 active crash trx, include 0 empty_trxs, 0 empty_pages which only need to delete mgr recs.<br>pseg_crash_trx_rollback end<br>pseg recv finished<br>nsvr_startup end.<br>aud sys init success.<br>aud rt sys init success.<br>systables desc init success.<br>ndct_db_load_info success.<br>nsvr_process_before_open begin.<br>nsvr_process_before_open success.<br>total 0 active crash trx, pseg_crash_trx_rollback sys_only(0) begin …<br>pseg_crash_trx_rollback end, total 0 active crash trx, include 0 empty_trxs, 0 empty_pages which only need to delete mgr recs.<br>pseg_crash_trx_rollback end<br>SYSTEM IS READY.<br>mem<br>os reserved: 0<br>mem pool:454066048 reserved: 414838400<br>–后台<br>root@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;tool# su - dmdba<br>-bash: kysec：权限不够：&#x2F;home&#x2F;dmdba&#x2F;&#x2F;.bash_profile<br>dmdba@wzx-VMware-Virtual-Platform:~$ cd &#x2F;dm8&#x2F;bin<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ ll<br>Could not find command-not-found database. Run ‘sudo apt update’ to populate it.<br>ll：未找到命令<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ ls Dm<br>ls: 无法访问’Dm’: 没有那个文件或目录<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ ls Dm*<br>DmAPService	       DmInstanceMonitorService  DmServiceDAMENG<br>DmAuditMonitorService  DmJobMonitorService	 DmServiceDMSERVER<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ .&#x2F;DmServiceDMSERVER stop<br>Stopping DmServiceDMSERVER:                                [ OK ]<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ .&#x2F;DmServiceDMSERVER status<br>DmServiceDMSERVER is stopped<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ .&#x2F;DmServiceDMSERVER start<br>Starting DmServiceDMSERVER:                                [ OK ]<br>dmdba@wzx-VMware-Virtual-Platform:&#x2F;dm8&#x2F;bin$ </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/oracle/" rel="tag"># oracle</a>
+              <a href="/tags/dm%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># dm数据库</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/04/python%E5%AD%A6%E4%B9%A0/" rel="prev" title="python学习">
+      <i class="fa fa-chevron-left"></i> python学习
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97-%E8%AF%B4%E6%98%8E%EF%BC%88%E9%BB%98%E8%AE%A4%E5%80%BC%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">关键字                     说明（默认值）</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="王子心"
+      src="/images/zjz.jpg">
+  <p class="site-author-name" itemprop="name">王子心</p>
+  <div class="site-description" itemprop="description">Practice makes perfect.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-10 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王子心</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共5.2k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
